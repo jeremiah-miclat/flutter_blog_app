@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog_app/pages/blog_page.dart';
+import 'package:flutter_blog_app/pages/blogs_page.dart';
+import 'package:flutter_blog_app/pages/create_page.dart';
 import 'package:flutter_blog_app/pages/login_page.dart';
 import 'package:flutter_blog_app/pages/profile_page.dart';
 import 'package:flutter_blog_app/pages/register_page.dart';
@@ -41,11 +44,14 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const AuthProvider(),
+      initialRoute: '/',
       routes: {
+        '/': (_) => const AuthGate(),
         '/login': (_) => const LoginPage(),
         '/register': (_) => const RegisterPage(),
+        '/blogs': (_) => const BlogsPage(),
         '/profile': (_) => const ProfilePage(),
+        '/create': (_) => const CreateBlogPage(),
       },
     );
   }

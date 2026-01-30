@@ -27,11 +27,13 @@ class SupabaseRealtimeService {
           schema: 'public',
           table: 'blogs',
           callback: (payload) {
-            debugPrint(
-              'Type: ${payload.eventType} '
-              'New: ${payload.newRecord} '
-              'Old: ${payload.oldRecord}',
-            );
+            if (payload.eventType == PostgresChangeEvent.insert) {
+              _controller.add({
+                'table': 'blogs',
+                'event': 'INSERT',
+                'new': payload.newRecord,
+              });
+            }
           },
         )
         .onPostgresChanges(
